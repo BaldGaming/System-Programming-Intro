@@ -3,7 +3,7 @@
 #include <math.h>
 
 
-x
+c
 
 int main()
 {
