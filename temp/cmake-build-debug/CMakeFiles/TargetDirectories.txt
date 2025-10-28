@@ -1,0 +1,3 @@
+C:/Users/itayr/Desktop/system_programing_intro/temp/cmake-build-debug/CMakeFiles/temp.dir
+C:/Users/itayr/Desktop/system_programing_intro/temp/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/itayr/Desktop/system_programing_intro/temp/cmake-build-debug/CMakeFiles/rebuild_cache.dir

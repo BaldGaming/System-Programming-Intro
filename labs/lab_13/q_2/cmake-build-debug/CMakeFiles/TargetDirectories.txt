@@ -1,0 +1,3 @@
+C:/Users/itayr/Desktop/system_programing_intro/labs/lab_13/q_2/cmake-build-debug/CMakeFiles/q_2.dir
+C:/Users/itayr/Desktop/system_programing_intro/labs/lab_13/q_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/itayr/Desktop/system_programing_intro/labs/lab_13/q_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

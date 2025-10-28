@@ -1,0 +1,393 @@
+*** READ ME ***
+
+This file is essentially a list of useful things such as-
+methods \ libraries \ algorithms and other things with explanations.
+
+
+! DECLARATIONS & LIBRARIES !
+------------------------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <time.h>
+
+#define _CRT_SECURE_NO_WARNINGS
+#define NAME NUM
+------------------------------------------------------------------------------------------------------------------------
+
+
+! OPERATORS !
+------------------------------------------------------------------------------------------------------------------------
+
+! MEMORY MANAGEMENT !
+------------------------------------------------------------------------------------------------------------------------
+sizeof()  - Returns the byte size of any expression.
+            Example: `int size = sizeof(int);`
+
+malloc()  - Allocates a specified amount of memory dynamically.
+            Example: `int *ptr = malloc(5 * sizeof(int));`
+
+calloc()  - Allocates and initializes an array dynamically.
+            Example: `int *ptr = calloc(5, sizeof(int));`
+
+realloc() - Resizes previously allocated memory.
+              Example: `ptr = realloc(ptr, 10 * sizeof(int));`
+
+free()    - Frees previously allocated memory.
+            Example: `free(ptr);`
+
+------------------------------------------------------------------------------------------------------------------------
+
+! INPUT / OUTPUT !
+------------------------------------------------------------------------------------------------------------------------
+getchar() - Reads a single character from standard input.
+            Example: `char c = getchar();`
+
+putchar() - Writes a single character to standard output.
+            Example: `putchar('A');`
+
+scanf()   - Reads formatted input from standard input.
+            Example: `int num; scanf("%d", &num);`
+
+printf()  - Prints formatted output to standard output.
+            Example: `printf("Number: %d", num);`
+
+fgets()   - Reads a string from standard input with buffer size control.
+            Example: `char str[20]; fgets(str, 20, stdin);`
+
+puts()    - Writes a string to standard output, adding a newline.
+            Example: `puts("Hello, world!");`
+
+------------------------------------------------------------------------------------------------------------------------
+
+! STRING HANDLING !
+------------------------------------------------------------------------------------------------------------------------
+strlen() - Returns the length of a string.
+           Example: `int len = strlen("Hello");`
+
+strcpy() - Copies a string into another.
+           Example: `char dest[20]; strcpy(dest, "Copy this");`
+
+strcat() - Concatenates two strings.
+           Example: `char str1[20] = "Hello "; strcat(str1, "World");`
+
+strcmp() - Compares two strings lexicographically.
+           Example: `if (strcmp("apple", "banana") < 0) { puts("Apple comes first"); }`
+
+strstr() - Finds a substring within a string.
+           Example: `char *ptr = strstr("Hello World", "World");`
+
+strchr() - Finds a character within a string.
+           Example: `char *ptr = strchr("Hello", 'e');`
+------------------------------------------------------------------------------------------------------------------------
+
+
+! VARIABLE TYPES !
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Type Name          |    Code                   |    Byte(s)    |    Definition                          |    Range of Numbers
+___________________________________________________________________________________________________________________________________________________
+char               |    %c                     |    1          |    Character type                      |    -128 to 127
+unsigned char      |    %c                     |    1          |    Unsigned character type             |    0 to 255
+short              |    %hd                    |    2          |    Short integer                       |    -32,768 to 32,767
+unsigned short     |    %hu                    |    2          |    Unsigned short integer              |    0 to 65,535
+int                |    %d / %o / %x / %X      |    4          |    Standard integer                    |    -2,147,483,648 to 2,147,483,647
+unsigned int       |    %u / %o / %x / %X      |    4          |    Unsigned integer                    |    0 to 4,294,967,295
+long               |    %ld                    |    4 or 8     |    Long integer                        |    Depends on system
+unsigned long      |    %lu                    |    4 or 8     |    Unsigned long integer               |    Depends on system
+float              |    %f                     |    4          |    Floating-point number               |    ~3.4E-38 to 3.4E+38
+double             |    %lf                    |    8          |    Double floating-point number        |    ~1.7E-308 to 1.7E+308
+long double        |    %Lf                    |    8 or 16    |    Extended precision floating-point   |    Larger range depending on architecture
+char pointer       |    %s                     |    8          |    Pointer to character string         |    N/A (points to memory location)
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+! PROGRAMMING FUNDAMENTALS !
+------------------------------------------------------------------------------------------------------------------------
+if -               Executes code if a condition is true.
+                   Example: `if (x > 0) { printf("Positive"); }`
+
+if else -          Adds an alternative block when the condition is false.
+                   Example: `if (x > 0) { printf("Positive"); } else { printf("Negative"); }`
+
+switch -           Selects from multiple cases based on a value.
+                   Example:  `switch (ch) {
+                                 case 'y': case 'Y':
+                                     printf("Yes");
+                                     break;
+                                 default:
+                                     printf("No"); }`
+
+while -            Loops while a condition is true.
+                   Example: `while (x < 10) { x++; }`
+
+do while -         Executes the loop body at least once, then repeats while a condition is true.
+                   Example: `do { x++; } while (x < 10);`
+
+for -              Loops a fixed number of times.
+                   Example: `for (int i = 0; i < 5; i++) { printf("%d", i); }`
+
+                   A for loop can also go in reverse.
+                   Example: `for (int i = 5; i > 0; i--) { printf("%d", i); }`
+
+casting -          Converts one data type into another, either implicitly or explicitly.
+                   Example: `float f = (float)5 / 2;`
+
+function -         Defines reusable code.
+                   Example: `int add(int a, int b) { return a + b; }`
+
+ternary operator - Shorthand for `if-else` using `?` and `:`.
+                   Example: `(age >= 18) ? printf("Adult") : printf("Minor");`
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+! POINTERS & MEMORY MANAGEMENT !
+------------------------------------------------------------------------------------------------------------------------
+pointer (*) -         Stores the memory address of a variable, allowing indirect access to its value.
+                      Example: `int x = 10; int *ptr = &x;` (ptr now holds the address of x)
+                      Dereferencing with `*ptr` retrieves the value at the address (e.g., 10).
+
+ampersand (&) -       Used to obtain the memory address of a variable, often for initializing pointers.
+                      Example: `ptr = &x;` (retrieves x’s address and assigns it to ptr)
+
+double pointer (**) - A pointer that stores the address of another pointer.
+                      Example: `int **dblPtr = &ptr;` (dblPtr holds the address of ptr, which holds x’s address)
+
+NULL -                Represents an empty or invalid pointer, preventing it from pointing to unintended memory.
+                      Example: `ptr = NULL;` (ptr now doesn’t point to any valid memory location)
+                      Defined in `<stdio.h>` and equivalent to `0` in pointer contexts.
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+! ARRAYS & STRINGS !
+------------------------------------------------------------------------------------------------------------------------
+array -            A collection of variables stored in contiguous memory, accessed using an index.
+                   Example: `int arr[5] = {1, 2, 3, 4, 5};
+                             char str1[] = {'H', 'e', 'l', 'l', 'o', '\0'};
+                             char str2[10] = "Hello";
+                             char str3[] = "Hello";`
+                   Also,    `arr[0]` is equivalent to `*(arr + 0)`, where it points to the first element.
+
+string -           An array of characters terminated by a null character (`\0`).
+                   Example: `char str[] = "Hello";`
+
+matrix array -     A nested array structure storing data in rows and columns.
+                   Example: `int matrix[2][3] = {{1, 2, 3}, {4, 5, 6}};`
+
+null termination - The special `'\0'` character marking the end of a string in memory.
+                   Example: `char str[] = {'H', 'e', 'l', 'l', 'o', '\0'};`
+------------------------------------------------------------------------------------------------------------------------
+
+
+! STRUCTURES !
+------------------------------------------------------------------------------------------------------------------------
+structure -     A user-defined variable type that groups multiple variables under one name.
+                Unlike arrays, a structure can hold multiple data types, and members are accessed by name (not index).
+                Example: `struct Person {
+                             char name[10];
+                             int age;
+                             char address[20];
+                         };`
+
+declaration -   Once defined, you can create variables or pointers to the structure type.
+                Example: `struct Person x; struct Person *y;`
+
+access -        Use dot `.` to access members:        `x.age = 30;`
+                Use arrow `->` with pointers:         `y->age = 30;`
+
+typedef -       Used to avoid repeating `struct` keyword on every declaration.
+                Example: `typedef struct {
+                             char name[10];
+                             int age;
+                             char address[20];
+                         } Person;
+                         Person moshe; Person *kid;`
+
+assignment -    You can copy the contents of one struct into another directly.
+                Example: `Person a = {"A", 20, "X"}; Person b = a;`
+
+functions -     Passing structs to functions makes a copy (changes don’t persist).
+                To modify, pass a pointer instead: `void update(Person *p) { p->age = 25; }`
+------------------------------------------------------------------------------------------------------------------------
+
+
+! FILES !
+------------------------------------------------------------------------------------------------------------------------
+formats -       Two file formats exist:
+                1. Text  – stored in ASCII character form.
+                2. Binary – stored exactly as in memory (raw bytes).
+
+steps -         1. Open the file (fopen).
+                2. Read/write using file functions.
+                3. Close the file (fclose).
+
+open -          fopen returns a FILE pointer. Always check for NULL.
+                Example: `FILE *f = fopen("data.txt", "rt");`
+                Modes: "r", "w", "a", "r+", "w+" + 't' or 'b' for text/binary.
+
+mode meanings - r   – read only       (fails if file doesn't exist)
+                w   – write only      (clears the file)
+                a   – append only     (adds to end)
+                r+  – read/write      (must exist)
+                w+  – write/read      (clears and overwrites)
+
+close -         Use fclose to close and save file: `fclose(f);`
+                exit(1) auto-closes all files.
+
+seek -          fseek moves the file pointer.
+                `fseek(FILE *fp, long offset, int origin);`
+                origin: SEEK_SET (start), SEEK_CUR (current), SEEK_END (end)
+
+eof -           EOF = -1, marks end of file. Used in loops like:
+                `while ((c = fgetc(f)) != EOF) {...}`
+
+text I/O -      fscanf  - formatted input:     `fscanf(f, "%d %s", &x, str);`
+                fprintf - formatted output:    `fprintf(f, "%d %s", x, str);`
+                fgets   - read string:         `fgets(buf, size, f);`
+                fputs   - write string:        `fputs("text", f);`
+                fgetc   - read char:           `char c = fgetc(f);`
+                fputc   - write char:          `fputc('A', f);`
+
+standard I/O -  stdin  – keyboard
+                stdout – screen
+                stderr – errors
+
+stdlib -        atoi from <stdlib.h> converts string to int:
+                `char *s = "-123"; int x = atoi(s); // x = -123`
+
+example -       Reading 3 digits (no delimiter) from file into int:
+                `char str[4]; fgets(str, 4, f); int num = atoi(str);`
+
+ftell -         Returns number of bytes from file start to current:
+                `fseek(f, 0, SEEK_END); int size = ftell(f)/3;`
+
+rewind -        Resets pointer to file start: `rewind(f);`
+remove -        Deletes file: `remove("file.txt");`
+rename -        Renames file: `rename("old.txt", "new.txt");`
+feof -          Checks if end of file reached: `while (!feof(f)) {...}`
+------------------------------------------------------------------------------------------------------------------------
+
+
+! BITWISE OPERATIONS !
+------------------------------------------------------------------------------------------------------------------------
+AND  &             Copies a bit to the result if it exists in both operands.
+                    Example: `unsigned int c = a & b;`
+
+OR   |             Copies a bit to the result if it exists in either operand.
+                    Example: `unsigned int c = a | b;`
+
+XOR  ^             Copies a bit to the result if it exists in one operand only.
+                    Example: `unsigned int c = a ^ b;`
+
+NOT  ~             Inverts all bits of the operand.
+                    Example: `unsigned int c = ~a;`
+
+Left Shift   <<    Shifts all bits of the operand left by a specified number of positions.
+                    Example: `a = a << 2;`
+
+Right Shift  >>    Right shift. Shifts all bits of the operand right by a specified number of positions.
+                    Example: `b = b >> 1;`
+
+XOR swap –         Swaps two variables without a temporary using XOR.
+                    Example:
+                    int one = 12, two = 10; // one=1100, two=1010
+                    one ^= two;             // one=0110, two=1010
+                    two ^= one;             // one=0110, two=1100
+                    one ^= two;             // one=1010, two=1100
+------------------------------------------------------------------------------------------------------------------------
+
+
+! LINKED LISTS !
+------------------------------------------------------------------------------------------------------------------------
+Linked list – A dynamic data structure where each element points to the next, allowing efficient insertions and deletions.
+                Example:
+               typedef struct Node
+               {
+                   /* data fields */
+                   struct Node* next;  /* pointer to next node */
+               } Node;
+
+Head pointer – Points to the first node; must be initialized to NULL.
+                Example: `Node* head = NULL;`
+
+Insert at head – Always allocate dynamically:
+               
+               Node* temp = malloc(sizeof(Node));
+               /* initialize data in temp */
+               temp->next = head;
+               head = temp;
+
+Insert after a node – Given pointer `prev`:
+               
+               Node* temp = malloc(sizeof(Node));
+               /* initialize data in temp */
+               temp->next = prev->next;
+               prev->next = temp;
+
+Insert at tail – Maintain a tail pointer to avoid scanning:
+               
+               Node* temp = malloc(sizeof(Node));
+               /* initialize data in temp */
+               tail->next = temp;
+               tail = temp;
+
+Delete head – Remove the first node:
+               
+               Node* temp = head;
+               head = head->next;
+               free(temp);
+
+Notes:
+  - Always check for NULL before inserting or deleting.
+  - Free nodes to avoid memory leaks.
+  - For a doubly linked list, use both `next` and `prev` pointers:
+
+    typedef struct DNode
+    {
+        /* data fields */
+        struct DNode *next, *prev;
+    } DNode;
+------------------------------------------------------------------------------------------------------------------------
+
+
+! ASCII TABLE !
+------------------------------------------------------------------------------------------------------------------------
+Char  |  Decimal  |  Char  |  Decimal  |  Char  |  Decimal
+________________________________________________________________________________________________________________________
+A     |    65     |  J     |    74     |  S     |    83
+B     |    66     |  K     |    75     |  T     |    84
+C     |    67     |  L     |    76     |  U     |    85
+D     |    68     |  M     |    77     |  V     |    86
+E     |    69     |  N     |    78     |  W     |    87
+F     |    70     |  O     |    79     |  X     |    88
+G     |    71     |  P     |    80     |  Y     |    89
+H     |    72     |  Q     |    81     |  Z     |    90
+I     |    73     |  R     |    82     |        |
+------------------------------------------------------------------------------------------------------------------------
+a     |    97     |  j     |   106     |  s     |   115
+b     |    98     |  k     |   107     |  t     |   116
+c     |    99     |  l     |   108     |  u     |   117
+d     |   100     |  m     |   109     |  v     |   118
+e     |   101     |  n     |   110     |  w     |   119
+f     |   102     |  o     |   111     |  x     |   120
+g     |   103     |  p     |   112     |  y     |   121
+h     |   104     |  q     |   113     |  z     |   122
+i     |   105     |  r     |   114     |        |
+------------------------------------------------------------------------------------------------------------------------
+
+
+! GLOBAL & STATIC VARIABLES !
+------------------------------------------------------------------------------------------------------------------------
+global variable - A variable declared outside of any function, making it accessible throughout the entire program.
+                  Example: `int globalVar = 10;`
+
+static variable - A variable that retains its value across multiple function calls and is restricted to its scope.
+                  Example: `static int counter = 0;`
+------------------------------------------------------------------------------------------------------------------------
+
+! ALGORITHMS !
+------------------------------------------------------------------------------------------------------------------------
+TBD
+------------------------------------------------------------------------------------------------------------------------
