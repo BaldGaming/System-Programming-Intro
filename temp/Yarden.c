@@ -3,7 +3,7 @@
 #include <math.h>
 
 
-df
+d
 
 int main()
 {
